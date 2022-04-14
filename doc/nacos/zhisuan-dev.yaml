@@ -1,0 +1,63 @@
+#spring配置
+spring:
+  redis:
+    ##redis 单机环境配置
+    host: 127.0.0.1
+    port: 6379
+    password:
+    database: 0
+    ssl: false
+    ##redis 集群环境配置
+    #cluster:
+    #  nodes: 127.0.0.1:7001,127.0.0.1:7002,127.0.0.1:7003
+    #  commandTimeout: 5000
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    #driver-class-name: org.postgresql.Driver
+    #driver-class-name: oracle.jdbc.OracleDriver
+    #driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    #driver-class-name: dm.jdbc.driver.DmDriver
+    druid:
+      # MySql、PostgreSQL、SqlServer、DaMeng校验
+      validation-query: select 1
+      # Oracle校验
+      #validation-query: select 1 from dual
+
+#项目模块集中配置
+zhisuan:
+  #分布式锁配置
+  lock:
+    enabled: false
+    address: redis://127.0.0.1:6379
+  #多团队协作服务配置
+  ribbon:
+    rule:
+      #开启配置
+      enabled: true
+      #负载均衡优先调用的ip段
+      prior-ip-pattern:
+        - 192.168.0.*
+        - 127.0.0.1
+  #通用开发生产环境数据库地址(特殊情况可在对应的子工程里配置覆盖)
+  datasource:
+    dev:
+      # MySql
+      url: jdbc:mysql://localhost:3306/zhisuanx?useSSL=false&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&tinyInt1isBit=false&allowMultiQueries=true&serverTimezone=GMT%2B8&allowPublicKeyRetrieval=true
+      username: root
+      password: root
+      # PostgreSQL
+      #url: jdbc:postgresql://127.0.0.1:5432/zhisuanx
+      #username: postgres
+      #password: 123456
+      # Oracle
+      #url: jdbc:oracle:thin:@127.0.0.1:1521:orcl
+      #username: ZHISUANX
+      #password: ZHISUANX
+      # SqlServer
+      #url: jdbc:sqlserver://127.0.0.1:1433;DatabaseName=zhisuanx
+      #username: zhisuanx
+      #password: zhisuanx
+      # DaMeng
+      #url: jdbc:dm://127.0.0.1:5236/ZHISUANX?zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=utf-8
+      #username: ZHISUANX
+      #password: ZHISUANX

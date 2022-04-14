@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>org.springzhisuan</groupId>
+        <artifactId>BladeX-Tool</artifactId>
+        <version>2.9.1.RELEASE</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>zhisuan-core-boot</artifactId>
+    <name>${project.artifactId}</name>
+    <version>${project.parent.version}</version>
+    <packaging>jar</packaging>
+
+    <dependencies>
+        <!-- Zhisuan -->
+        <dependency>
+            <groupId>org.springzhisuan</groupId>
+            <artifactId>zhisuan-core-context</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springzhisuan</groupId>
+            <artifactId>zhisuan-core-db</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springzhisuan</groupId>
+            <artifactId>zhisuan-core-secure</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springzhisuan</groupId>
+            <artifactId>zhisuan-core-cloud</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springzhisuan</groupId>
+            <artifactId>zhisuan-starter-cache</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springzhisuan</groupId>
+            <artifactId>zhisuan-starter-redis</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springzhisuan</groupId>
+            <artifactId>zhisuan-starter-log</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springzhisuan</groupId>
+            <artifactId>zhisuan-starter-mybatis</artifactId>
+        </dependency>
+        <!-- Auto -->
+        <dependency>
+            <groupId>org.springzhisuan</groupId>
+            <artifactId>zhisuan-core-auto</artifactId>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+</project>

@@ -1,0 +1,34 @@
+{{ define "wechat.default.message" }}
+{{- if gt (len .Alerts.Firing) 0 -}}
+{{- range $index, $alert := .Alerts -}}
+{{- if eq $index 0 -}}
+==========告警通知==========
+告警类型: {{ $alert.Labels.alertname }}
+告警状态: {{ $alert.Status }}
+告警级别: {{ $alert.Labels.level }}
+{{- end }}
+==========告警详情==========
+告警主题: {{ $alert.Annotations.summary }}
+告警详情: {{ $alert.Annotations.description }}
+故障时间: {{ $alert.StartsAt.Local }}
+{{ if gt (len $alert.Labels.instance) 0 -}}故障实例: {{ $alert.Labels.instance }}{{- end -}}
+{{- end }}
+{{- end }}
+
+{{- if gt (len .Alerts.Resolved) 0 -}}
+{{- range $index, $alert := .Alerts -}}
+{{- if eq $index 0 -}}
+==========恢复通知==========
+告警类型: {{ $alert.Labels.alertname }}
+告警状态: {{ $alert.Status }}
+告警级别: {{ $alert.Labels.level }}
+{{- end }}
+==========恢复详情==========
+告警主题: {{ $alert.Annotations.summary }}
+告警详情: {{ $alert.Annotations.description }}
+故障时间: {{ $alert.StartsAt.Local }}
+恢复时间: {{ $alert.EndsAt.Local }}
+{{ if gt (len $alert.Labels.instance) 0 -}}故障实例: {{ $alert.Labels.instance }}{{- end -}}
+{{- end }}
+{{- end }}
+{{- end }}

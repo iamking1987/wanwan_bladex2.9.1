@@ -1,0 +1,27 @@
+server:
+  port: 9091
+spring:
+  application:
+    name: oauth2-server-example
+  datasource:
+    url: jdbc:mysql://39.108.62.171:3306/auth-example-20210924?useSSL=false
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+  redis:
+    host: p2wan.fun
+    port: 6379
+    password: redis123
+    database: 0 # Redis 数据库号，默认为 0 。
+  cloud:
+    # Nacos 作为注册中心的配置项，对应 NacosDiscoveryProperties 配置类
+    nacos:
+      discovery:
+        server-addr: p2wan.fun:8848
+        service: ${spring.application.name}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

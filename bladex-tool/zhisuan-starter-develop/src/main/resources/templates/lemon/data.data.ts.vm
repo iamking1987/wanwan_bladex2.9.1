@@ -1,0 +1,37 @@
+import { BasicColumn } from '/@/components/Table';
+import { FormSchema } from '/@/components/Table';
+import { DescItem } from '/@/components/Description/index';
+export const columns: BasicColumn[] = [
+    #foreach($field in $!{table.fields})
+        #if($!{field.name}!=$!{tenantColumn})
+            {
+                title: "$!{field.comment}",
+                dataIndex: "$!{field.propertyName}",
+            },
+        #end
+    #end
+];
+
+export const formSchema: FormSchema[] = [
+    #foreach($field in $!{table.fields})
+        #if($!{field.name}!=$!{tenantColumn})
+            {
+                field: "$!{field.propertyName}",
+                label: "$!{field.comment}",
+                component: 'Input',
+                required: true,
+            },
+        #end
+    #end
+];
+
+export const detailSchema: DescItem[] = [
+    #foreach($field in $!{table.fields})
+        #if($!{field.name}!=$!{tenantColumn})
+            {
+                field: "$!{field.propertyName}",
+                label: "$!{field.comment}",
+            },
+        #end
+    #end
+];

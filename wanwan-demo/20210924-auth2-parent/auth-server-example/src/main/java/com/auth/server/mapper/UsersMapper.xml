@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.auth.server.mapper.UsersMapper">
+
+    <resultMap type="com.auth.server.domain.entity.UserDefault" id="usersMap">
+        <id property="id" column="id"/>
+        <result property="username" column="username"/>
+        <result property="password" column="password"/>
+        <result property="status" column="enabled"/>
+        <result property="role" column="role"/>
+    </resultMap>
+
+    <select id="selectUsersPage" resultMap="usersMap">
+        SELECT *
+        FROM users ${ew.customSqlSegment}
+    </select>
+
+</mapper>

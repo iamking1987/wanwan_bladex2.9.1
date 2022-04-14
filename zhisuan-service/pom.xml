@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <parent>
+        <groupId>org.springzhisuan</groupId>
+        <artifactId>BladeX</artifactId>
+        <version>2.9.1.RELEASE</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>zhisuan-service</artifactId>
+    <name>${project.artifactId}</name>
+    <version>2.9.1.RELEASE</version>
+    <packaging>pom</packaging>
+    <description>ZhisuanX 微服务集合</description>
+
+    <modules>
+        <module>zhisuan-desk</module>
+        <module>zhisuan-system</module>
+        <module>zhisuan-user</module>
+    </modules>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springzhisuan</groupId>
+            <artifactId>zhisuan-common</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springzhisuan</groupId>
+            <artifactId>zhisuan-starter-metrics</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springzhisuan</groupId>
+            <artifactId>zhisuan-starter-tenant</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springzhisuan</groupId>
+            <artifactId>zhisuan-starter-api-crypto</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springzhisuan</groupId>
+            <artifactId>zhisuan-dict-api</artifactId>
+            <version>${bladex.project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springzhisuan</groupId>
+            <artifactId>zhisuan-scope-api</artifactId>
+            <version>${bladex.project.version}</version>
+        </dependency>
+    </dependencies>
+
+</project>

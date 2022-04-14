@@ -1,0 +1,39 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    #driver-class-name: org.postgresql.Driver
+    #driver-class-name: oracle.jdbc.OracleDriver
+    #driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    #driver-class-name: dm.jdbc.driver.DmDriver
+    druid:
+      # MySql、PostgreSQL、SqlServer、DaMeng校验
+      validation-query: select 1
+      # Oracle校验
+      #validation-query: select 1 from dual
+
+#项目模块集中配置
+zhisuan:
+  #工作流模块开发生产环境数据库地址
+  datasource:
+    flow:
+      dev:
+        # MySql
+        url: jdbc:mysql://localhost:3306/zhisuanx_flow?useSSL=false&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&tinyInt1isBit=false&allowMultiQueries=true&serverTimezone=GMT%2B8&nullCatalogMeansCurrent=true&allowPublicKeyRetrieval=true
+        username: root
+        password: root
+        # PostgreSQL
+        #url: jdbc:postgresql://127.0.0.1:5432/zhisuanx_flow
+        #username: postgres
+        #password: 123456
+        # Oracle
+        #url: jdbc:oracle:thin:@127.0.0.1:1521:orcl
+        #username: ZHISUANX_FLOW
+        #password: ZHISUANX_FLOW
+        # SqlServer
+        #url: jdbc:sqlserver://127.0.0.1:1433;DatabaseName=zhisuanx_flow
+        #username: zhisuanx_flow
+        #password: zhisuanx_flow
+        # DaMeng
+        #url: jdbc:dm://127.0.0.1:5236/ZHISUANX_FLOW?zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=utf-8
+        #username: ZHISUANX_FLOW
+        #password: ZHISUANX_FLOW

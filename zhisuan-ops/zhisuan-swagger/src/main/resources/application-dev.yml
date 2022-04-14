@@ -1,0 +1,12 @@
+knife4j:
+  cloud:
+    routes:
+      - name: 授权模块
+        uri: 127.0.0.1
+        location: /zhisuan-auth/v2/api-docs
+      - name: 工作台模块
+        uri: 127.0.0.1
+        location: /zhisuan-desk/v2/api-docs
+      - name: 系统模块
+        uri: 127.0.0.1
+        location: /zhisuan-system/v2/api-docs

@@ -1,0 +1,45 @@
+server:
+  port: 7002
+  undertow:
+    threads:
+      # 设置IO线程数, 它主要执行非阻塞的任务,它们会负责多个连接, 默认设置每个CPU核心一个线程
+      io: 16
+      # 阻塞任务线程池, 当执行类似servlet请求阻塞操作, undertow会从这个线程池中取得线程,它的值设置取决于系统的负载
+      worker: 400
+    # 以下的配置会影响buffer,这些buffer会用于服务器连接的IO操作,有点类似netty的池化内存管理
+    buffer-size: 1024
+    # 是否分配的直接内存
+    direct-buffers: true
+
+spring:
+  boot:
+    admin:
+      discovery:
+        ignored-services:
+          - consul
+          - serverAddr
+      ui:
+        title: ZhisuanX Monitor
+        external-views:
+          - label: 架构官网
+            url: https://zhisuanx.vip/
+            order: 1
+            iframe: true
+      ## 用于内网安全，判断 admin proxy
+      instance-proxy:
+        ignored-headers: "X-Forwarded-For"
+  security:
+    user:
+      name: zhisuan
+      password: zhisuan
+
+# 监控的相关配置
+monitor:
+  ding-talk:
+    enabled: false
+    # 用于自定义域名，默认会自动填充为 http://ip:port
+    link: http://localhost:${server.port}
+    # 钉钉配置的令牌
+    access-token: xxx
+    # 如果采用密钥形式，需要添加，否则需要去掉该参数
+    secret:

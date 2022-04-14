@@ -1,0 +1,11 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: resource-server-example
+  datasource:
+    url: jdbc:mysql://p2wan.fun:3306/auth-example-20210924?useSSL=false
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver

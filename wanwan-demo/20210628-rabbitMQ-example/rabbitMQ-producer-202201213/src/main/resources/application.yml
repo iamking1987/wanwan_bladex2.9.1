@@ -1,0 +1,26 @@
+server:
+  port: 8082
+
+#数据源配置
+spring:
+  datasource:
+    url: jdbc:mysql://39.108.62.171:3306/auth-example-20210924?useSSL=false
+    username: root
+    password: 123456
+
+  # RabbitMQ 配置项，对应 RabbitProperties 配置类
+  rabbitmq:
+    host: 39.108.62.171
+    port: 5672
+    username: test
+    password: test098
+    virtual-host: /test
+    # 开启消息二次确认,生产者到broker的交换机
+    publisher-confirm-type: correlated
+    #开启消息二次确认，交换机到队列的可靠性投递，开启returnCallback配置
+    publisher-returns: true
+    #为true,则交换机处理消息到路由失败，则会返回给生产者
+    template:
+      mandatory: true
+
+

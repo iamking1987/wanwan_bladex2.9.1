@@ -1,0 +1,7 @@
+#数据源配置
+spring:
+  datasource:
+    url: ${zhisuan.datasource.job.dev.url}
+    username: ${zhisuan.datasource.job.dev.username}
+    password: ${zhisuan.datasource.job.dev.password}
+

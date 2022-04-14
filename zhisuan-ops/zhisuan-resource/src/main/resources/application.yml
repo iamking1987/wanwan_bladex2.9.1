@@ -1,0 +1,13 @@
+#服务器端口
+server:
+  port: 8010
+
+#默认对象存储配置
+oss:
+  enabled: true
+  name: minio
+  tenant-mode: true
+  endpoint: http://127.0.0.1:9000
+  access-key: D99KGE6ZTQXSATTJWU24
+  secret-key: QyVqGnhIQQE734UYSUFlGOZViE6+ZlDEfUG3NjhJ
+  bucket-name: zhisuanx

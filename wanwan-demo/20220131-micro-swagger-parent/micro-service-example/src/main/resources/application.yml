@@ -1,0 +1,18 @@
+server:
+  port: 8080
+spring:
+  profiles:
+    active: dev
+  application:
+    name: provider-example1
+  cloud:
+    nacos:
+      discovery:
+        server-addr: p2wan.fun:8848
+  datasource:
+    url: jdbc:mysql://p2wan.fun:3306/test?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+
+

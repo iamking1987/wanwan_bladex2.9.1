@@ -1,0 +1,23 @@
+spring:
+  # 对应 RedisProperties 类
+  redis:
+    host: p2wan.fun
+    port: 6379
+    password: redis123 # Redis 服务器密码，默认为空。生产中，一定要设置 Redis 密码！
+    database: 0 # Redis 数据库号，默认为 0 。
+    timeout: 0 # Redis 连接超时时间，单位：毫秒。
+
+  datasource:
+    url: jdbc:mysql://p2wan.fun:3306/test?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+    hikari:
+      pool-name: DateHikariCP #连接池名
+      minimum-idle: 5 # 最小空闲连接出
+      idle-timeout: 600000  # 空闲连接存活最大时间，默认600000(10分钟)
+      maximum-pool-size: 10 #最大连接数，默认10
+      auto-commit: true # 从连接池返回的连接自动提交
+      max-lifetime: 1800000 # 连接最大存活时间，0表示永久存活，默认1800000(30分钟)
+      connection-timeout: 30000  # 连接超时时间，默认30000(30秒)
+      connection-test-query: SELECT 1 # 测试连接是否可用的查询语句

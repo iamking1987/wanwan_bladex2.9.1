@@ -1,0 +1,15 @@
+#服务器端口
+server:
+  port: 8100
+
+#数据源配置
+spring:
+  datasource:
+    url: ${zhisuan.datasource.test.url}
+    username: ${zhisuan.datasource.test.username}
+    password: ${zhisuan.datasource.test.password}
+
+#第三方登陆
+social:
+  enabled: true
+  domain: http://127.0.0.1:1888

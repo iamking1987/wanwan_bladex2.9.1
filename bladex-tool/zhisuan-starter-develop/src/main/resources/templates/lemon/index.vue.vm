@@ -1,0 +1,101 @@
+<template>
+    <div>
+        <BasicTable @register="registerTable">
+            <template #toolbar>
+                <a-button type="primary" v-auth="'$!{entityKey}_add'" @click="handleCreate">
+                    新增
+                </a-button>
+            </template>
+            <template #action="{ record }">
+                <TableAction
+                    :actions="[
+            {
+              auth: '$!{entityKey}_view',
+              label: '查看',
+              color: 'success',
+              icon: 'clarity:info-standard-line',
+              onClick: handleView.bind(null, record),
+            },
+            {
+              auth: '$!{entityKey}_edit',
+              label: '编辑',
+              icon: 'clarity:note-edit-line',
+              onClick: handleEdit.bind(null, record),
+            },
+            {
+              auth: '$!{entityKey}_delete',
+              label: '删除',
+              icon: 'ant-design:delete-outlined',
+              color: 'error',
+              popConfirm: {
+                title: '是否确认删除',
+                confirm: handleDelete.bind(null, record),
+              },
+            },
+          ]"
+                />
+            </template>
+        </BasicTable>
+        <$!{entity}Modal @register="registerModal" @success="handleSuccess" />
+    </div>
+</template>
+<script lang="ts" setup name="$!{entity}">
+    import $!{entity}Modal from './$!{entity}Modal.vue';
+    import { BasicTable, useTable, TableAction } from '/@/components/Table';
+    import { getList, remove } from '/@/api/$!{servicePackageLowerCase}/$!{entityKey}';
+    import { useModal } from '/@/components/Modal';
+    import { columns } from './$!{entityKey}.data';
+    import { useMessage } from '/@/hooks/web/useMessage';
+
+    const { createMessage } = useMessage();
+    const [registerModal, { openModal }] = useModal();
+    const [registerTable, { reload }] = useTable({
+        api: getList,
+        rowKey: 'id',
+        columns,
+        formConfig: {
+            labelWidth: 120,
+        },
+        useSearchForm: false,
+        actionColumn: {
+            width: 250,
+            title: '操作',
+            dataIndex: 'action',
+            slots: { customRender: 'action' },
+        },
+    });
+
+    function handleCreate() {
+        openModal(true, {
+            isDetail: false,
+            isUpdate: false,
+        });
+    }
+
+    function handleView(record: Recordable) {
+        openModal(true, {
+            record,
+            isUpdate: false,
+            isDetail: true,
+        });
+    }
+
+    function handleEdit(record: Recordable) {
+        openModal(true, {
+            record,
+            isDetail: false,
+            isUpdate: true,
+        });
+    }
+    async function handleDelete(record: Recordable) {
+        await remove({ ids: record.id });
+        createMessage.success('操作成功');
+        reload();
+    }
+
+    function handleSuccess() {
+        //操作成功提示
+        createMessage.success('操作成功');
+        reload();
+    }
+</script>

@@ -1,0 +1,11 @@
+#swagger公共信息
+swagger:
+  title: ZhisuanX 接口文档系统
+  description: ZhisuanX 接口文档系统
+  license: Powered By ZhisuanX
+  license-url: https://zhisuanx.vip
+  terms-of-service-url: https://zhisuanx.vip
+  contact:
+    name: smallchill
+    email: smallchill@163.com
+    url: https://gitee.com/smallc

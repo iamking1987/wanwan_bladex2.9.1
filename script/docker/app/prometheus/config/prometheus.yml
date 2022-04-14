@@ -1,0 +1,68 @@
+# my global config
+global:
+  scrape_interval:     15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
+  evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
+  # scrape_timeout is set to the global default (10s).
+
+# Alertmanager configuration
+alerting:
+  alertmanagers:
+  - static_configs:
+    - targets: ['172.30.0.99:9093']
+
+# Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
+rule_files:
+  - "rules/alert_rules.yml"
+
+# A scrape configuration containing exactly one endpoint to scrape:
+# Here it's Prometheus itself.
+scrape_configs:
+  # 监控 prometheus
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['172.30.0.90:9090'] #填写prometheus服务ip:端口
+  # 监控 linux
+  - job_name: linux
+    static_configs:
+      - targets: ['172.30.0.93:9100'] #填写node-exporter的docker服务ip:端口或者宿主机ip:映射的端口
+        labels:
+          instance: localhost:linux #实例名称或ip
+  # 监控 mysql
+  - job_name: 'mysql'
+    static_configs:
+      - targets: ['172.30.0.94:9104'] #填写mysqld-exporter的docker服务ip:端口或者宿主机ip:映射的端口
+        labels:
+          instance: localhost:mysql #实例名称或ip
+  # 监控 cadvisor
+  - job_name: "docker"
+    static_configs:
+      - targets: ['172.30.0.180:8080'] #填写cadvisor服务ip:端口
+  # 监控 nacos
+  - job_name: "nacos"
+    metrics_path: '/nacos/actuator/prometheus'
+    static_configs:
+      - targets: ['172.30.0.48:8848'] #填写nacos服务ip:端口
+  # 监控 zhisuanx
+  - job_name: "zhisuanx"
+    metrics_path: "/actuator/prometheus"
+    scrape_interval: 5s
+    consul_sd_configs:
+      #必须保证prometheus能调用否则不会显示
+      #若是docker部署必须保证网络与各服务调通
+      - server: '172.30.0.72:7002' #填写实现consul-api的zhisuan-admin服务ip:端口
+        #匹配所有service
+        services: []
+    relabel_configs:
+      #service 源标签
+      - source_labels: [__meta_consul_service]
+        #匹配 "zhisuan" 开头的service
+        regex: "zhisuan*"
+        #执行的动作
+        action: drop
+        #将service的label重写为application
+      - source_labels: [__meta_consul_service]
+        target_label: application
+      - source_labels: [__meta_consul_service_address]
+        target_label: instance
+      - source_labels: [__meta_consul_tags]
+        target_label:  job

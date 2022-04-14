@@ -1,0 +1,11 @@
+#服务器端口
+server:
+  port: 7007
+
+#数据源配置
+spring:
+  datasource:
+    url: ${zhisuan.datasource.prod.url}
+    username: ${zhisuan.datasource.prod.username}
+    password: ${zhisuan.datasource.prod.password}
+

@@ -1,0 +1,6 @@
+#数据源配置
+spring:
+  datasource:
+    url: ${zhisuan.datasource.flow.dev.url}
+    username: ${zhisuan.datasource.flow.dev.username}
+    password: ${zhisuan.datasource.flow.dev.password}

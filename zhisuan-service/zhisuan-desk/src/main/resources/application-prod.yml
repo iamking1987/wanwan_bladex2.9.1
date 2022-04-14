@@ -1,0 +1,10 @@
+#服务器端口
+server:
+  port: 8105
+
+#数据源配置
+spring:
+  datasource:
+    url: ${zhisuan.datasource.prod.url}
+    username: ${zhisuan.datasource.prod.username}
+    password: ${zhisuan.datasource.prod.password}

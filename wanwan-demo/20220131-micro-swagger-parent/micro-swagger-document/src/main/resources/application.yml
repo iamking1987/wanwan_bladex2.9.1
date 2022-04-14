@@ -1,0 +1,54 @@
+server:
+  port: 9001
+spring:
+  profiles:
+    active: dev
+  application:
+    name: swagger-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: p2wan.fun:8848
+  datasource:
+    url: jdbc:mysql://p2wan.fun:3306/test?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+knife4j:
+  # 开启聚合
+  enableAggregation: true
+  # swagger nacos模式配置
+  nacos:
+    enable: true # 开启Nacos模式
+    serviceUrl: http://p2wan.fun:8848/nacos
+    routeAuth:
+      enable: true
+      password: nacos
+      username: nacos
+    routes:
+      - name: provider-a服务
+        serviceName: provider-example1 # 微服务在Nacos注册中心的名称
+        location: /v2/api-docs # 微服务文档资源路径
+#        location: /v2/api-docs?group=default
+        servicePath: /api/app1 # 给每个接口添加路径前缀，作用是拼接出经过nginx和gateway处理前的实际接口url
+      - name: provider-b服务
+        serviceName: provider-example2
+        location: /v2/api-docs?group=default
+        servicePath: /
+
+---
+# swagger cloud模式配置
+#spring:
+#  profiles:
+#    active: dev-cloud
+#
+#knife4j:
+#  enableAggregation: true
+#  cloud:
+#    enable: true # 开启cloud模式
+#    routes:
+#      - name: 应用1 # 微服务在聚合文档中的名称
+#        uri: localhost:8081 # 微服务的http地址
+#        location: /v2/api-docs # 微服务文档资源路径
+#        servicePath: /api/app1 # 给每个接口添加路径前缀，作用是拼接出经过nginx和gateway处理前的实际接口url
+
