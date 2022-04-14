@@ -199,11 +199,11 @@
                 <enabled>false</enabled>
             </snapshots>
         </repository>
-        <repository>
+        <!--<repository>
             <id>local_releases</id>
             <name>Release Repository</name>
             <url>http://192.168.30.232:8081/nexus/content/groups/public/</url>
-        </repository>
+        </repository>-->
     </repositories>
 
     <pluginRepositories>

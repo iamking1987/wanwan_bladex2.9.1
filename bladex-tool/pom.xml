@@ -156,32 +156,28 @@
     </build>
 
     <repositories>
-        <!--<repository>
-            <id>local_releases</id>
-            <name>Release Repository</name>
-            <url>http://192.168.30.232:8081/nexus/content/groups/public/</url>
-        </repository>-->
         <repository>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>central</id>
+            <name>Maven Repository Switchboard</name>
+            <url>http://repo1.maven.org/maven2</url>
+        </repository>
+        <!-- <repository>
+             <id>aliyun-repos</id>
+             <url>https://maven.aliyun.com/repository/public/</url>
+             <releases>
+                 <enabled>true</enabled>
+             </releases>
+         </repository>-->
+         <!--<repository>
             <id>activiti-repos2</id>
             <name>Activiti Repository 2</name>
             <url>https://app.camunda.com/nexus/content/groups/public</url>
-        </repository>
-        <repository>
-            <id>aliyun-repos</id>
-            <url>https://maven.aliyun.com/repository/public/</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-        </repository>
+        </repository>-->
     </repositories>
     <pluginRepositories>
-        <!--<pluginRepository>
-            <id>local_releases</id>
-            <url>http://192.168.30.232:8081/nexus/content/groups/public/</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-        </pluginRepository>-->
         <pluginRepository>
             <id>aliyun-plugin</id>
             <url>https://maven.aliyun.com/repository/public/</url>
@@ -190,14 +186,6 @@
             </snapshots>
         </pluginRepository>
     </pluginRepositories>
-
-    <distributionManagement>
-        <repository>
-            <id>local_releases</id>
-            <name>Release Repository</name>
-            <url>http://192.168.30.232:8081/nexus/content/repositories/releases/</url>
-        </repository>
-    </distributionManagement>
 
     <profiles>
         <profile>

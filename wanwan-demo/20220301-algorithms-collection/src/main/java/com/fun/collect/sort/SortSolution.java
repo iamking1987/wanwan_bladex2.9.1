@@ -11,6 +11,7 @@ public class SortSolution {
 		int[] a = {3,0,5,2,8};
 //		insertSort(a);
 //		shellSort(a);
+		quickSort(a, 0, a.length-1);
 		System.out.println(Arrays.toString(a));
 	}
 
@@ -47,13 +48,32 @@ public class SortSolution {
 	 * 快速排序
 	 */
 	public static void quickSort(int[] arr, int left, int right) {
-
+		if(left < right) {
+			dealPivot(left, right, arr);
+			int i = left;
+			int j = right - 1;
+			while (true) {
+				while (arr[++i] < arr[right-1]) {}
+				while (j > left && arr[--j] > arr[right-1]) {}
+				if (i < j) {
+					swap(arr, i, j);
+				}
+				else {
+					break;
+				}
+			}
+			if (i < right) {
+				swap(arr, i, right-1);
+			}
+			quickSort(arr, left, i-1);
+			quickSort(arr, i+1, right);
+		}
 	}
 
 	/**
 	 * 枢点处理方法：三项取中
 	 */
-	public void dealPivot(int left, int right, int[] arr) {
+	public static void dealPivot(int left, int right, int[] arr) {
 		int mid = left + right / 2;
 		if (arr[left] > arr[right]) {
 			swap(arr, arr[left], arr[right]);
@@ -64,7 +84,7 @@ public class SortSolution {
 		if (arr[mid] > arr[right]) {
 			swap(arr, arr[mid], arr[right]);
 		}
-		swap(arr, arr[mid], arr[right-1]);
+		swap(arr, mid, right-1);
 	}
 
 	public static void swap(int []arr, int i, int j) {
