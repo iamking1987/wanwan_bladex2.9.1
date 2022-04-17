@@ -1,4 +1,4 @@
-package com.fun.collect.sort;
+package com.fun.collect.collect;
 
 import java.util.Arrays;
 
