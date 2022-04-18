@@ -1,5 +1,6 @@
 package com.fun.collect.collect;
 
+
 import java.util.Arrays;
 
 /**
@@ -11,8 +12,10 @@ public class SortSolution {
 		int[] a = {3,0,5,2,8};
 //		insertSort(a);
 //		shellSort(a);
-		quickSort(a, 0, a.length-1);
+//		quickSort(a, 0, a.length-1);
 		System.out.println(Arrays.toString(a));
+
+
 	}
 
 	/**
@@ -49,7 +52,7 @@ public class SortSolution {
 	 */
 	public static void quickSort(int[] arr, int left, int right) {
 		if(left < right) {
-			dealPivot(left, right, arr);
+			dealPivot(arr, left, right);
 			int i = left;
 			int j = right - 1;
 			while (true) {
@@ -71,18 +74,18 @@ public class SortSolution {
 	}
 
 	/**
-	 * 枢点处理方法：三项取中
+	 * 枢点处理方法：三项取中排序
 	 */
-	public static void dealPivot(int left, int right, int[] arr) {
+	public static void dealPivot(int[] arr, int left, int right) {
 		int mid = left + right / 2;
 		if (arr[left] > arr[right]) {
-			swap(arr, arr[left], arr[right]);
+			swap(arr, left, right);
 		}
 		if (arr[left] > arr[mid]) {
-			swap(arr, arr[left], arr[mid]);
+			swap(arr, left, mid);
 		}
 		if (arr[mid] > arr[right]) {
-			swap(arr, arr[mid], arr[right]);
+			swap(arr, mid, right);
 		}
 		swap(arr, mid, right-1);
 	}
