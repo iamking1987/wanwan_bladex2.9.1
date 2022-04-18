@@ -19,12 +19,67 @@ public class BSTreeSolution {
 		System.out.println(JSONUtil.toJsonStr(bsTree));
 	}
 
+	/**
+	 * 前序遍历
+	 */
+	public static void preOrder(BSTree tree) {
+		if (tree != null) {
+			System.out.println(tree.data);
+			preOrder(tree.lchild);
+			preOrder(tree.rchild);
+		}
+	}
+
+	/**
+	 * 中序遍历
+	 */
+	public static void inOrder(BSTree tree) {
+		if (tree != null) {
+			inOrder(tree.lchild);
+			System.out.println(tree.data);
+			inOrder(tree.rchild);
+		}
+	}
+
+	/**
+	 * 后序遍历
+	 */
+	public static void postOrder(BSTree tree) {
+		if (tree != null) {
+			postOrder(tree.lchild);
+			postOrder(tree.rchild);
+			System.out.println(tree.data);
+		}
+	}
+
+	/**
+	 * 判断是否存在节点
+	 */
+	public static boolean hasKey(BSTree tree, int key) {
+		if (tree == null) {
+			return false;
+		}
+		if (tree.data == key) {
+			return true;
+		}
+		if (key > tree.data) {
+			return hasKey(tree.getRchild(), key);
+		}
+		else {
+			return hasKey(tree.getLchild(), key);
+		}
+	}
+
+	/**
+	 * 构建树
+	 */
 	public static BSTree buildTree(BSTree tree, int key) {
 		if (tree == null) {
 			BSTree bsTree = new BSTree();
 			bsTree.setData(key);
+			return bsTree;
 		}
-		else if (key > tree.getData()) {
+		if (key > tree.getData()) {
 			tree.setRchild(buildTree(tree.getRchild(), key));
 		}
 		else {
